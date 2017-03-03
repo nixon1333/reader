@@ -7,23 +7,6 @@ from .helper import RssHelper
 
 # Create your views here.
 
-class getRssDetails(APIView):
-    def get(self, request, format=None):
-
-        parsed_data = feedparser.parse('http://feeds.feedburner.com/300mbfilms1')
-        # parsed_data = feedparser.parse('http://www.feedforall.com/blog-feed.xml')
-
-        # print(parsed_data)
-
-        return JsonResponse({
-            'success': True,
-            'name':parsed_data['feed']['title'],
-            'subtitle':parsed_data['feed']['subtitle'],
-            'link':parsed_data['feed']['link'],
-            'updated':parsed_data['feed']['updated'],
-            'entries':parsed_data['entries'],
-        }, safe=False)
-
 class RssManager(APIView):
 
     def post(self, request, format=None):
@@ -69,4 +52,26 @@ class RssManager(APIView):
                 'success':False,
                 'message' : 'You are not permitted'
             }, safe=False)
+
+    def get(self, request, format=None):
+
+        if request.user.is_authenticated():
+
+            requested_url_id = request.GET.get('url_id', False)
+
+            rss_data = RssHelper.get_rss_feed_or_list(requested_url_id, request.user)
+
+
+
+            return JsonResponse({
+                'success': True,
+                'url_id': requested_url_id,
+                'data':rss_data
+            }, safe=False)
+
+        return JsonResponse({
+                'success': False,
+                'message': 'You are not permitted'
+            }, safe=False)
+
 
