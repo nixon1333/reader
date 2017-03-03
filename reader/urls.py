@@ -35,4 +35,5 @@ urlpatterns = [
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
     url(r'^single_rss_details/', rssView.getRssDetails.as_view(), name='single_rss_details'),
+    url(r'^rss_manager/', rssView.RssManager.as_view(), name='rss_manager'),
 ]
