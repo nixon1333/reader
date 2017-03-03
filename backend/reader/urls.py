@@ -19,6 +19,7 @@ from rest_framework import routers
 from rest_framework.schemas import get_schema_view
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from rss import views as rssView
+from django.views.generic import TemplateView
 
 
 router = routers.DefaultRouter()
@@ -28,11 +29,12 @@ router = routers.DefaultRouter()
 
 
 urlpatterns = [
+    url(r'^$', TemplateView.as_view(template_name="app/index.html"), name='index'),
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^api-token-auth/', obtain_jwt_token),
-    url(r'^api-token-refresh/', refresh_jwt_token),
-    url(r'^api-token-verify/', verify_jwt_token),
-    url(r'^rss_manager/', rssView.RssManager.as_view(), name='rss_manager'),
+    url(r'^apiv/', include(router.urls)),
+    url(r'^api/api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/api-token-auth/', obtain_jwt_token),
+    url(r'^api/api-token-refresh/', refresh_jwt_token),
+    url(r'^api/api-token-verify/', verify_jwt_token),
+    url(r'^api/rss_manager/', rssView.RssManager.as_view(), name='rss_manager'),
 ]

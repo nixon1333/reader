@@ -1,0 +1,27 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-loader": "^1.6.3",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "angular": "^1.6.2",
+    "angular-resource": "^1.6.2",
+    "angular-route": "^1.6.2",
+    "eslint": "^3.16.1",
+    "eslint-loader": "^1.6.3",
+    "json-loader": "^0.5.4",
+    "lodash": "^4.17.4",
+    "mustache-loader": "^0.4.1"
+  }
+}
