@@ -26,7 +26,7 @@ SECRET_KEY = 'gd9-e!t)zbh097!*f^4ak8#o&^7cv5y6w*^^b&+cs+)(iudk^%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -101,10 +101,20 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'reader.urls'
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+head, tail =  os.path.split(BASE_DIR)
+FRONTEND_ROOT = head+'/frontend/'
+STATICFILES_DIRS = [
+    FRONTEND_ROOT
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [FRONTEND_ROOT],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

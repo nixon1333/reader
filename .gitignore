@@ -11,7 +11,7 @@ __pycache__/
 env/
 build/
 develop-eggs/
-dist/
+#dist/
 downloads/
 eggs/
 .eggs/
@@ -88,4 +88,5 @@ ENV/
 # Rope project settings
 .ropeproject
 /.idea
-db.sqlite3
+backend/db.sqlite3
+frontend/node_modules
