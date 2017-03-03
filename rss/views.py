@@ -34,11 +34,14 @@ class RssManager(APIView):
 
             # first validate
             if RssHelper.check_requested_data_for_rss_save(requested_feed_url):
-                if RssHelper.url_validate(self, requested_feed_url):
+
+                check_url_get_title = RssHelper.url_validate(self, requested_feed_url)
+                if check_url_get_title:
                     #now save the data
                     feed_data = {}
                     feed_data['url'] = requested_feed_url
                     feed_data['user'] = request.user
+                    feed_data['title'] = check_url_get_title
 
                     confirm_res = RssHelper.save_rss_feed(self, feed_data)
                     if confirm_res['success']:

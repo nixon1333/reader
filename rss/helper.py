@@ -16,7 +16,7 @@ class RssHelper:
             req.urlopen(request)
             feed_data = feedparser.parse(url_to_check)
             if len(feed_data['entries']) > 0 :
-                return True
+                return feed_data['feed']['title']
             return False
         except:
             return False
@@ -33,6 +33,7 @@ class RssHelper:
             feed_list = FeedsList()
             feed_list.user = feed_info['user']
             feed_list.url = feed_info['url']
+            feed_list.name = feed_info['title']
             feed_list.save()
             return {
                 'success': True,
