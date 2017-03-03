@@ -65,9 +65,36 @@ class RssManager(APIView):
 
             return JsonResponse({
                 'success': True,
-                'url_id': requested_url_id,
                 'data':rss_data
             }, safe=False)
+
+        return JsonResponse({
+                'success': False,
+                'message': 'You are not permitted'
+            }, safe=False)
+
+    def delete(self, request, format=None):
+        if request.user.is_authenticated():
+
+            requested_url_id = request.data.get('url_id', False)
+
+            if requested_url_id:
+                if RssHelper.remove_rss_item(self,requested_url_id,request.user):
+                    return JsonResponse({
+                        'success': True,
+                        'message': 'Item deleted'
+                    }, safe=False)
+
+                return JsonResponse({
+                    'success': False,
+                    'message': 'Item Could not be found'
+                }, safe=False)
+
+            return JsonResponse({
+                'success': False,
+                'message': 'url_id is needed to completed this request'
+            }, safe=False)
+
 
         return JsonResponse({
                 'success': False,

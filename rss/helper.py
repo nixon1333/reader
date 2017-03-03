@@ -77,5 +77,14 @@ class RssHelper:
                 'feed_entries': parsed_data['entries'],
             }
         return {
-
         }
+
+    def remove_rss_item(self, url_id, user_id):
+        removing_item = FeedsList.objects.filter(pk=url_id,user=user_id,status=1).first()
+
+        if removing_item:
+            removing_item.status = 0
+            removing_item.save()
+            return True
+
+        return False
