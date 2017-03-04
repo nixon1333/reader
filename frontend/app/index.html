@@ -3,8 +3,10 @@
 <html ng-app="myApp">  
   <head>
     <title>My Site</title>
+      <base href="/">
     <script src="{% static 'dist/js/bundle.js' %}"></script>
   </head>
   <body>
+  <div ng-view></div>
   </body>
 </html> 

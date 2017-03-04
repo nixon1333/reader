@@ -63,11 +63,38 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+angular.module("Home", []);
+
+__webpack_require__(6);
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+function routesConfig($routeProvider) {
+  $routeProvider
+    .when("/", {
+      templateUrl: _urlPrefixes.TEMPLATES + "components/home/home.html",
+      label: "Home"
+    })
+    .otherwise({
+      templateUrl: _urlPrefixes.TEMPLATES + "404.html"
+    });
+}
+
+routesConfig.$inject = ["$routeProvider"];
+
+module.exports = routesConfig;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
 /**
@@ -922,7 +949,7 @@ angular.module('ngResource', ['ng']).
 
 
 /***/ }),
-/* 1 */
+/* 3 */
 /***/ (function(module, exports) {
 
 /**
@@ -2156,7 +2183,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 /***/ }),
-/* 2 */
+/* 4 */
 /***/ (function(module, exports) {
 
 /**
@@ -35295,7 +35322,7 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -52384,10 +52411,25 @@ $provide.value("$locale", {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7), __webpack_require__(8)(module)))
 
 /***/ }),
-/* 4 */
+/* 6 */
+/***/ (function(module, exports) {
+
+function HomeController() {
+  var that = this;
+  that.foo = "Foo!";
+  console.log(that); // should print out the controller object
+}
+
+angular.module("Home")
+  .controller("HomeController", [
+    HomeController
+  ]);
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 var g;
@@ -52414,7 +52456,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -52442,33 +52484,37 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Created by nixon on 04-Mar-17.
  */
+__webpack_require__(4);
+__webpack_require__(3);
 __webpack_require__(2);
-__webpack_require__(1);
-__webpack_require__(0);
 
 /* Globals */
-_ = __webpack_require__(3);
+_ = __webpack_require__(5);
 _urlPrefixes = {
-  API: "api/sass",
+  API: "api/",
   TEMPLATES: "static/app/"
 };
 
 /* Components */
 
+__webpack_require__(0);
+//
 /* App Dependencies */
 angular.module("myApp", [
+  "Home", // this is our component
   "ngResource",
-  "ngRoute",
+  "ngRoute"
 ]);
 
 /* Config Vars */
 // @TODO in Step 13.
+var routesConfig = __webpack_require__(1);
 
 /* App Config */
 angular.module("myApp").config(routesConfig);
