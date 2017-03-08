@@ -15,12 +15,14 @@ _urlPrefixes = {
 /* Components */
 
 require("./components/home/home");
+require("./components/login/login");
 //
 /* App Dependencies */
 angular.module("myApp", [
-  "Home", // this is our component
-  "ngResource",
-  "ngRoute"
+    "Home", // this is our component
+    "Login",
+    "ngResource",
+    "ngRoute"
 ]);
 
 /* Config Vars */
